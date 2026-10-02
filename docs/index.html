@@ -372,7 +372,9 @@
         <code>ad_user_data</code>, <code>ad_personalization</code>,
         <code>functionality_storage</code>, <code>personalization_storage</code>,
         <code>security_storage</code>). These apply to visitors outside the EEA, UK and Switzerland
-        until they make a choice. All are <strong>Granted</strong> by default.
+        until they make a choice. All are <strong>Granted</strong> by default. If you set them
+        to Denied, GoTrust still grants consent for visitors in countries where no banner is
+        configured, so measurement continues there.
       </p>
       <p>
         The EEA, UK and Switzerland always start denied and can't be changed here, because those
@@ -476,6 +478,10 @@
               <td>
                 The new state is sent with <code>updateConsentState</code> as soon as they click.
               </td>
+            </tr>
+            <tr>
+              <td>No banner configured for the visitor's country (outside the EEA, UK and Switzerland)</td>
+              <td>All consent types are granted with <code>updateConsentState</code>, so measurement continues.</td>
             </tr>
             <tr>
               <td>Browser sends Global Privacy Control</td>
