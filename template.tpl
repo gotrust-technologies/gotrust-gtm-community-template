@@ -101,7 +101,7 @@ ___TEMPLATE_PARAMETERS___
     ],
     "simpleValueType": true,
     "defaultValue": "advanced",
-    "help": "This only controls the `wait_for_update` timing GTM uses when evaluating default consent state for OTHER tags in this container — it does not itself block any tag from firing. Whether a given tag waits for consent is controlled by that tag\u0027s own \"Consent Settings\" (Additional Consent Checks) plus the default state this template sets below."
+    "help": "Sets wait_for_update, which controls how long to wait before data is sent: the Wait For Update value with Advanced, no wait with Basic. Whether a tag is blocked until the user interacts with the banner (Google’s Basic consent mode) or loads with the default consent states (Advanced) is set in each tag’s own consent settings."
   },
   {
     "type": "GROUP",
@@ -111,7 +111,7 @@ ___TEMPLATE_PARAMETERS___
     "subParams": [
       {
         "type": "LABEL",
-        "name": "gdprZoneNote",
+        "name": "regionDefaultsNote",
         "displayName": "Visitors in the EEA, UK and Switzerland always start with every type denied except security_storage. Everywhere else starts with the values below until the visitor makes a choice. The defaults suit most sites; you do not need to change them."
       },
       {
@@ -130,7 +130,8 @@ ___TEMPLATE_PARAMETERS___
           }
         ],
         "simpleValueType": true,
-        "defaultValue": "granted"
+        "defaultValue": "granted",
+        "help": "Enables storage, such as cookies (web) or device identifiers (apps), related to advertising."
       },
       {
         "type": "SELECT",
@@ -148,7 +149,8 @@ ___TEMPLATE_PARAMETERS___
           }
         ],
         "simpleValueType": true,
-        "defaultValue": "granted"
+        "defaultValue": "granted",
+        "help": "Enables storage, such as cookies (web) or device identifiers (apps), related to analytics, for example, visit duration."
       },
       {
         "type": "SELECT",
@@ -166,7 +168,8 @@ ___TEMPLATE_PARAMETERS___
           }
         ],
         "simpleValueType": true,
-        "defaultValue": "granted"
+        "defaultValue": "granted",
+        "help": "Sets consent for sending user data to Google for online advertising purposes."
       },
       {
         "type": "SELECT",
@@ -184,7 +187,8 @@ ___TEMPLATE_PARAMETERS___
           }
         ],
         "simpleValueType": true,
-        "defaultValue": "granted"
+        "defaultValue": "granted",
+        "help": "Sets consent for personalized advertising."
       },
       {
         "type": "SELECT",
@@ -202,7 +206,8 @@ ___TEMPLATE_PARAMETERS___
           }
         ],
         "simpleValueType": true,
-        "defaultValue": "granted"
+        "defaultValue": "granted",
+        "help": "Enables storage that supports the functionality of the website or app, for example, language settings."
       },
       {
         "type": "SELECT",
@@ -220,7 +225,8 @@ ___TEMPLATE_PARAMETERS___
           }
         ],
         "simpleValueType": true,
-        "defaultValue": "granted"
+        "defaultValue": "granted",
+        "help": "Enables storage related to personalization, for example, video recommendations."
       },
       {
         "type": "SELECT",
@@ -238,13 +244,14 @@ ___TEMPLATE_PARAMETERS___
           }
         ],
         "simpleValueType": true,
-        "defaultValue": "granted"
+        "defaultValue": "granted",
+        "help": "Enables storage related to security such as authentication functionality, fraud prevention, and other user protection."
       },
       {
         "type": "PARAM_TABLE",
         "name": "regionalDefaults",
         "displayName": "Regional overrides (optional)",
-        "help": "Add a row to use different defaults in specific regions, e.g. US states with opt-out privacy laws. Google applies the most specific matching region. Codes for EEA, UK and Switzerland (and their subdivisions) are ignored here: those regions always stay denied.",
+        "help": "Add a row to use different defaults in specific regions, for example specific US states. Google applies the most specific matching region. Codes for the EEA, UK and Switzerland (and their subdivisions) are ignored here: those regions always stay denied.",
         "paramTableColumns": [
           {
             "param": {
@@ -287,7 +294,8 @@ ___TEMPLATE_PARAMETERS___
               ],
               "simpleValueType": true,
               "notSetText": "Not set (use global default)",
-              "defaultValue": ""
+              "defaultValue": "",
+              "help": "Enables storage, such as cookies (web) or device identifiers (apps), related to advertising."
             },
             "isUnique": false
           },
@@ -309,7 +317,8 @@ ___TEMPLATE_PARAMETERS___
               ],
               "simpleValueType": true,
               "notSetText": "Not set (use global default)",
-              "defaultValue": ""
+              "defaultValue": "",
+              "help": "Enables storage, such as cookies (web) or device identifiers (apps), related to analytics, for example, visit duration."
             },
             "isUnique": false
           },
@@ -331,7 +340,8 @@ ___TEMPLATE_PARAMETERS___
               ],
               "simpleValueType": true,
               "notSetText": "Not set (use global default)",
-              "defaultValue": ""
+              "defaultValue": "",
+              "help": "Sets consent for sending user data to Google for online advertising purposes."
             },
             "isUnique": false
           },
@@ -353,7 +363,8 @@ ___TEMPLATE_PARAMETERS___
               ],
               "simpleValueType": true,
               "notSetText": "Not set (use global default)",
-              "defaultValue": ""
+              "defaultValue": "",
+              "help": "Sets consent for personalized advertising."
             },
             "isUnique": false
           },
@@ -375,7 +386,8 @@ ___TEMPLATE_PARAMETERS___
               ],
               "simpleValueType": true,
               "notSetText": "Not set (use global default)",
-              "defaultValue": ""
+              "defaultValue": "",
+              "help": "Enables storage that supports the functionality of the website or app, for example, language settings."
             },
             "isUnique": false
           },
@@ -397,7 +409,8 @@ ___TEMPLATE_PARAMETERS___
               ],
               "simpleValueType": true,
               "notSetText": "Not set (use global default)",
-              "defaultValue": ""
+              "defaultValue": "",
+              "help": "Enables storage related to personalization, for example, video recommendations."
             },
             "isUnique": false
           },
@@ -419,7 +432,8 @@ ___TEMPLATE_PARAMETERS___
               ],
               "simpleValueType": true,
               "notSetText": "Not set (use global default)",
-              "defaultValue": ""
+              "defaultValue": "",
+              "help": "Enables storage related to security such as authentication functionality, fraud prevention, and other user protection."
             },
             "isUnique": false
           }
@@ -448,7 +462,7 @@ ___TEMPLATE_PARAMETERS___
         "displayName": "Wait For Update (ms)",
         "simpleValueType": true,
         "defaultValue": "2000",
-        "help": "Only used when Consent Mode Type is Advanced. How long GTM waits for a consent decision before proceeding, in milliseconds. Falls back to 2000 if left blank or invalid.",
+        "help": "wait_for_update: how long to wait before data is sent, in milliseconds. Only used with Advanced. Falls back to 2000 if left blank or invalid.",
         "valueValidators": [
           {
             "type": "POSITIVE_NUMBER"
@@ -494,7 +508,7 @@ ___TEMPLATE_PARAMETERS___
         "checkboxText": "Redact ads data when ad_storage is denied (ads_data_redaction)",
         "simpleValueType": true,
         "defaultValue": true,
-        "help": "Removes ad click identifiers from Google Ads and Floodlight requests while ad_storage is denied."
+        "help": "When ad_storage is denied, ad click identifiers sent in network requests by Google Ads and Floodlight tags are redacted."
       },
       {
         "type": "CHECKBOX",
@@ -502,7 +516,7 @@ ___TEMPLATE_PARAMETERS___
         "checkboxText": "Pass ad click information through URLs (url_passthrough)",
         "simpleValueType": true,
         "defaultValue": true,
-        "help": "Keeps ad click and session information in page URLs when cookies cannot be stored, to improve measurement accuracy."
+        "help": "Passes ad click, client ID, and session ID information in URLs."
       }
     ]
   }

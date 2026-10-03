@@ -362,9 +362,11 @@
 
       <h3>Consent Mode Type</h3>
       <p>
-        <strong>Advanced</strong> (recommended) makes other tags wait up to
-        <em>Wait For Update</em> milliseconds (2000 by default) for the visitor's choice before
-        using the default state. <strong>Basic</strong> makes them use the default immediately.
+        This sets <code>wait_for_update</code>, which Google describes as controlling how long to wait
+        before data is sent: up to <em>Wait For Update</em> milliseconds (2000 by default) with
+        <strong>Advanced</strong>, no wait with <strong>Basic</strong>. Whether a tag is blocked
+        until the user interacts with the banner (Google's Basic consent mode) or loads with the
+        default consent states (Advanced) is set in each tag's own consent settings in GTM.
       </p>
 
       <h3>Consent Mode Defaults</h3>
@@ -378,14 +380,12 @@
         configured, so measurement continues there.
       </p>
       <p>
-        The EEA, UK and Switzerland always start denied and can't be changed here, because those
-        regions require consent before tracking.
+        The EEA, UK and Switzerland always start denied and can't be changed here.
       </p>
 
       <h3>Regional overrides (optional)</h3>
       <p>
-        Add a row to give specific regions their own defaults, for example US states with opt-out
-        privacy laws. Enter comma-separated ISO codes such as <code>US-CA, US-CO, BR</code>
+        Add a row to give specific regions their own defaults, for example specific US states. Enter comma-separated ISO codes such as <code>US-CA, US-CO, BR</code>
         and choose Granted or Denied for the types you want to change; types left “Not set” use the
         global default. Google applies the most specific matching region.
       </p>
@@ -408,7 +408,8 @@
             <tr>
               <td>Wait For Update (ms)</td>
               <td><code>2000</code></td>
-              <td>Only with Advanced mode, and only if GoTrust support advises it.</td>
+              <td>How long to wait before data is sent (<code>wait_for_update</code>). Only used with
+                Advanced; change it only if GoTrust support advises it.</td>
             </tr>
             <tr>
               <td>GoTrust CDN Bundle Base URL</td>
@@ -430,14 +431,14 @@
               <td>Redact ads data (<code>ads_data_redaction</code>)</td>
               <td>On</td>
               <td>
-                Removes ad click identifiers from Google ads requests while
-                <code>ad_storage</code> is denied.
+                When <code>ad_storage</code> is denied, ad click identifiers sent in network requests by
+                Google Ads and Floodlight tags are redacted.
               </td>
             </tr>
             <tr>
               <td>Pass ad click information through URLs (<code>url_passthrough</code>)</td>
               <td>On</td>
-              <td>Keeps ad click and session information in URLs when cookies can't be stored.</td>
+              <td>Passes ad click, client ID, and session ID information in URLs.</td>
             </tr>
           </tbody>
         </table>
