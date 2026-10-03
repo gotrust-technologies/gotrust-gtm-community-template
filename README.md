@@ -30,6 +30,11 @@ Google Consent Mode v2 built in.
 
 Use this template **or** the HTML embed code from your dashboard, not both.
 
+## Google documentation
+
+- [Set up consent mode](https://developers.google.com/tag-platform/security/guides/consent?consentmode=advanced)
+- [Consent mode in Tag Manager templates](https://developers.google.com/tag-platform/tag-manager/templates/consent-apis)
+
 ## Support
 
 Email [support@gotrust.tech](mailto:support@gotrust.tech) or open an issue in this
