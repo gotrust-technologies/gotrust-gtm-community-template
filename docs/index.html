@@ -232,6 +232,7 @@
           <li><a href="#install">Install</a></li>
           <li><a href="#settings">Settings</a></li>
           <li><a href="#consent-flow">How consent reaches Google</a></li>
+          <li><a href="#basic-advanced">Basic and Advanced consent mode</a></li>
           <li><a href="#preferences">Reopening cookie preferences</a></li>
           <li><a href="#troubleshooting">Troubleshooting</a></li>
           <li><a href="#debug-mode">Misconfiguration debug mode</a></li>
@@ -486,6 +487,10 @@
               <td>All consent types are granted with <code>updateConsentState</code>, so measurement continues.</td>
             </tr>
             <tr>
+              <td>After every consent update</td>
+              <td>GoTrust pushes a <code>gotrust_consent_update</code> event to the dataLayer, with the new consent state in <code>gotrust_consent</code>.</td>
+            </tr>
+            <tr>
               <td>Browser sends Global Privacy Control</td>
               <td>
                 All non-essential consent types are set to denied and the banner is not shown.
@@ -526,6 +531,34 @@
           </tbody>
         </table>
       </div>
+
+      <h2 id="basic-advanced">Basic and Advanced consent mode</h2>
+      <p>
+        Google describes two setups (see Google's
+        <a href="https://developers.google.com/tag-platform/security/guides/consent?consentmode=advanced">consent mode guide</a>):
+        in Basic consent mode, Google tags are blocked until the user interacts with the consent
+        banner; in Advanced consent mode, Google tags load when a user opens the website, with the
+        default consent states set. With this template you choose per Google tag in your container:
+      </p>
+      <ul>
+        <li>
+          <strong>Basic:</strong> on the Google tag, open
+          <strong>Advanced Settings → Consent Settings</strong>, choose
+          <strong>Require additional consent for tag to fire</strong> and add the consent types it
+          needs (for example <code>analytics_storage</code> for Google Analytics,
+          <code>ad_storage</code> and <code>ad_user_data</code> for Google Ads). Fire the tag on a
+          <strong>Custom Event</strong> trigger with event name <code>gotrust_consent_update</code>
+          instead of a page-view trigger. GoTrust pushes this event after every consent update —
+          when the visitor makes a choice, and on each page for returning visitors — so the tag
+          fires once consent is granted. In the GoTrust tag, set <strong>Consent Mode Type</strong>
+          to Basic.
+        </li>
+        <li>
+          <strong>Advanced:</strong> keep your Google tags on their usual triggers with no
+          additional consent required; they load with the default consent states set. In the
+          GoTrust tag, set <strong>Consent Mode Type</strong> to Advanced.
+        </li>
+      </ul>
 
       <h2 id="preferences">Reopening cookie preferences</h2>
       <p>
