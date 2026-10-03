@@ -596,35 +596,47 @@
 
       <h2 id="debug-mode">Misconfiguration debug mode</h2>
       <p>
-        GoTrust can check whether your installation lets a Google tag run before the consent default
-        or the IAB TCF stub is in place. This works for both GTM and HTML embed installs.
+        GoTrust can check whether your installation lets a Google tag run before the consent
+        default or the IAB TCF stub is in place. This works for both GTM and HTML embed installs.
       </p>
       <p>
         Open your site with <code>?gt-shim-debug=1</code> added to the URL (for example
         <code>https://www.example.com/?gt-shim-debug=1</code>) and check the browser console.
-        Problems appear as warnings starting with
-        <code>[GoTrust Shim] MISCONFIGURATION DETECTED:</code>. Nothing is logged for normal
-        visitors.
+        Nothing is logged for normal visitors.
       </p>
+      <ul>
+        <li>
+          <strong>Setup correct:</strong> <code>[GoTrust Shim] Debug: OK</code> confirms the
+          Consent Mode default and TCF stub were set before any Google tag. For GTM template
+          installs, the message says the template sets the default on the Consent Initialization
+          trigger; check in Tag Assistant that it fires before your other tags.
+        </li>
+        <li>
+          <strong>Problem found:</strong> a warning starting with
+          <code>[GoTrust Shim] MISCONFIGURATION DETECTED:</code> names what was found.
+        </li>
+      </ul>
       <p>The checks look for:</p>
       <ul>
         <li>
-          <strong>A Google or ad-tech script placed before the GoTrust script</strong> in the page
-          HTML, the most common mistake with HTML embeds.
+          A Google or ad-tech script placed before the GoTrust script in the page HTML, the most
+          common mistake with HTML embeds.
         </li>
-        <li>
-          <strong>Entries already in <code>window.dataLayer</code></strong> before GoTrust set the
-          default, meaning another snippet pushed to it first. This check is skipped for GTM
-          template installs, where GTM always fills the dataLayer first and the template sets the
-          default.
-        </li>
+        <li>A Google tag (gtag.js or Google Tag Manager) that had already run before GoTrust loaded.</li>
+        <li>Entries already in <code>window.dataLayer</code> before GoTrust set the default.</li>
       </ul>
+      <p>
+        For GTM template installs, where GTM always loads first, the last two checks and the check
+        for Google's own tag scripts are skipped.
+      </p>
       <div class="note">
         <p>
-          <strong>Check Google Tag Gateway first.</strong> If the flagged tag uses Google Tag
-          Gateway, its requests go through your own domain, which can make these checks report a
-          false positive. If Tag Gateway isn't involved, move the GoTrust script (or this GTM tag's
-          trigger) earlier so it runs before other tags.
+          <strong>Check Google Tag Gateway first.</strong> A flagged late signal may come from a tag
+          that uses Google Tag Gateway, which serves it from your own domain. Check whether it does,
+          and if so follow GoTrust's Google Tag Gateway guidance:
+          <a href="https://gotrust.tech/docs/cmp#google-tag-gateway">gotrust.tech/docs/cmp#google-tag-gateway</a>.
+          If Tag Gateway isn't involved, move the GoTrust script (or this GTM tag's trigger) earlier
+          so it runs before other tags.
         </p>
       </div>
 
