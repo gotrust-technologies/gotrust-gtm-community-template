@@ -2,8 +2,10 @@ homepage: 'https://gotrust.tech'
 documentation: 'https://gotrust.tech/docs/gtm-template'
 versions:
   # Latest version
+  - sha: ef4c2579f78fa6096f454f4052558a1b443d5aed
+    changeNotes: Field validators for Domain ID, Domain URL, Environment and Bundle URL now pass their patterns in the args array, so GTM validates them correctly.
+  # Older versions
   - sha: 1e76e010145934c590c7fb4ded93e8f136fe22ce
     changeNotes: Help text uses Google's descriptions of each consent type, wait_for_update, ads_data_redaction and url_passthrough. No functional change.
-  # Older versions
   - sha: 5b7cb2d3a7db232c5dd483038544bbb378836384
     changeNotes: Initial release. Sets region-aware Consent Mode defaults (always denied in the EEA, UK and Switzerland, configurable elsewhere), restores returning visitors' choices and passes every consent choice to Google tags with updateConsentState, then loads the GoTrust CMP banner.
