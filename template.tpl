@@ -45,7 +45,9 @@ ___TEMPLATE_PARAMETERS___
       },
       {
         "type": "REGEX",
-        "regex": "^\\S+$",
+        "args": [
+          "^\\S+$"
+        ],
         "errorMessage": "Domain ID must not contain spaces."
       }
     ]
@@ -62,7 +64,9 @@ ___TEMPLATE_PARAMETERS___
       },
       {
         "type": "REGEX",
-        "regex": "^https?://\\S+$",
+        "args": [
+          "^https?://\\S+$"
+        ],
         "errorMessage": "Must be a full URL starting with http:// or https://."
       }
     ]
@@ -79,7 +83,9 @@ ___TEMPLATE_PARAMETERS___
       },
       {
         "type": "REGEX",
-        "regex": "^https://\\S+$",
+        "args": [
+          "^https://\\S+$"
+        ],
         "errorMessage": "Must be an https:// URL."
       }
     ]
@@ -489,7 +495,9 @@ ___TEMPLATE_PARAMETERS___
           },
           {
             "type": "REGEX",
-            "regex": "^https://\\S+$",
+            "args": [
+              "^https://\\S+$"
+            ],
             "errorMessage": "Must be an https:// URL."
           }
         ]
